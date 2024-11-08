@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function deptCalculation(originalDeptAmount, lastDateParam, interestRate, installmentsNumber) {
+
+            const dayAsMS = 86400000
+
+            const lastDate = new Date(lastDateParam)
+            const today = new Date()
+
+
+            const delayDays = (today - lastDate) / dayAsMS
+            const delay = Math.floor(delayDays)
+            
+
+            const interestAmount = ((originalDeptAmount / 100 * interestRate) / 30 * delay).toFixed(2)
+
+            const paymentPlan = []
+            instalmentStartingDate = new Date(2024, 11, 5)
+
+            // const x = new Date()
+            // console.log(x);
+            
+            if (instalmentStartingDate.getTime() < today) {
+                console.log('You need to input a valid date which is after than today')
+            } else {
+                for (let i = 0; i < installmentsNumber; i++) {
+                    const month = i != 0 ? instalmentStartingDate.getMonth() + 1 : instalmentStartingDate.getMonth() 
+                    const newInstallmentDate = instalmentStartingDate.setMonth(month)
+                    console.log(i + ' ' + new Date(newInstallmentDate))
+                    
+                    if (instalmentStartingDate.getDay() != 0 || installmentsNumber != 6) {
+
+                        const obj = {installment: i+1 + '. taksit', paymentDate: new Date(newInstallmentDate), }
+                        console.log(obj);
+                        
+                        }
+
+                }
+            }
+
+
+        }
+
+        deptCalculation(1000, '2024-10-8', 10, 13)
+    </script>
+</body>
+
+</html>
